@@ -2,11 +2,9 @@
   "todos": [
     {
       "id": 1,
-      "title": "hello world"
-    },
-    {
-      "id": 2,
-      "title": "bye world"
+      "writer": "호박고구마",
+      "title": "hello world",
+      "desc": "문어"
     }
   ]
 }

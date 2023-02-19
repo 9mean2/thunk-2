@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import axios from "axios";
 
 const initialState = {
@@ -28,6 +28,11 @@ export const __getTodos = createAsyncThunk(
   }
 );
 
+export const addList = createAsyncThunk("ADD_TODO", async (newList) => {
+  const response = await axios.post("http://localhost:4000/todos", newList);
+  return response.data;
+});
+
 export const todosSlice = createSlice({
   name: "todos",
   initialState,
@@ -48,6 +53,7 @@ export const todosSlice = createSlice({
       state.isError = true;
       state.error = action.payload;
     },
+    ["ADD_TODO".fulfilled]: (state, { payload }) => [...state, payload],
   },
 });
 
